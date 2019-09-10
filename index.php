@@ -28,6 +28,8 @@
 
     <canvas id="myChart2"></canvas>
 
+      <canvas id="myChart3"></canvas>
+
 
 
 

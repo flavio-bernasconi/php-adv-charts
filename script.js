@@ -31,10 +31,55 @@ function getData(){
               datasets: [{
                   label: '# of Votes',
                   data: Object.values(data.fatturato_by_agent.data),
-                  backgroundColor: ['rgba(255, 99, 132,1)' ]
+                  backgroundColor: [
+                    'rgba(255, 99, 132,1)',
+                    'rgba(150, 208, 130, 1)',
+                    'rgba(149, 99, 255, 1)',
+                    'rgba(255, 254, 110, 1)'
+
+                  ]
               }]
           }
       });
+
+
+      var ctx = document.getElementById('myChart3').getContext('2d');
+      var myChart = new Chart(ctx, {
+          type: data.team_efficiency.type,
+          data: {
+              labels: listMonth(),
+              datasets: [
+                {
+                  label: 'team1',
+                  data: data.team_efficiency.data.Team1,
+                  backgroundColor: 'rgb(255, 99, 132,0)',
+                  borderColor: [
+                    'rgba(255, 99, 132,1)'
+                  ]
+                },
+                {
+                  label: 'team2',
+                  data: data.team_efficiency.data.Team2,
+                  backgroundColor: 'rgb(255, 99, 132,0)',
+                  borderColor: [
+                    'rgba(150, 208, 130, 1)',
+
+                  ]
+                },
+                {
+                  label: 'team3',
+                  data: data.team_efficiency.data.Team3,
+                  backgroundColor: 'rgb(255, 99, 132,0)',
+                  borderColor: [
+                    'rgba(46, 79, 255, 1)'
+
+                  ]
+                }
+            ]
+          }
+      });
+
+
 
 
     }
