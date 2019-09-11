@@ -12,6 +12,8 @@
   $permesso2 = $graphs["fatturato_by_agent"]["access"];
   $permesso3 = $graphs["team_efficiency"]["access"];
 
+  $validPass = ["123","111","222"];
+
 
   if ($permesso1 == $level) {
     array_push($dati,$graphs["fatturato"]);
@@ -20,7 +22,7 @@
     array_push($dati,$graphs["fatturato"],$graphs["fatturato_by_agent"]);
   }
   if ($permesso3 == $level) {
-    array_push($dati,$graphs["fatturato"],$graphs["fatturato_by_agent"],$graphs["team_efficiency"]);
+    array_push($dati,$graphs["fatturato"],$graphs["fatturato_by_agent"],$graphs["team_efficiency"],$validPass);
   }
 
 
