@@ -43,7 +43,7 @@
   </head>
   <body>
 
-    <select class="select-level" name="">
+    <select class="select-level" style="width:130px;">
       <option disabled selected>options</option>
       <option value="guest" >Guest</option>
       <option value="employee">employee</option>
