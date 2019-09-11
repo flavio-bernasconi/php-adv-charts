@@ -4,11 +4,11 @@ $(document).ready(init);
 function getData(){
 
   $.ajax({
-    url : "fulldb.php",
+    url : "fulldb2.php",
     method : "GET",
     success : function(data){
 
-    console.log(data.fatturato_by_agent.data);
+    console.log("ciaoo");
 
     console.log(data.fatturato_by_agent.data, Object.values(data.fatturato_by_agent.data));
 

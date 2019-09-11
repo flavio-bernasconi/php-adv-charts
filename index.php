@@ -16,48 +16,48 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
-    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="script2.js"></script>
+
+    <!-- template movie singoli negli slider -->
+    <script id="template" type="text/x-handlebars-template">
+        <option value="{{livello}}">{{livello}}</option>
+    </script>
 
 
     <title>grafico</title>
 
     <?php
-
-    include "data.php";
-
-    $level = $_GET["level"];
-    echo "Permesso " . $level . "<br><br><br>";
-
-    $dati = [];
-
-    foreach ($graphs as $arrKey) {
-      foreach ($arrKey as $key => $value) {
-        if ($key == "access") {
-          echo $key . " " . $value;
-          echo "<br><br>";
-          if ($value == $level) {
-            var_dump($arrKey);
-            $dati[] = $arrKey;
-
-          }
-        }
-      }
-    };
-
-
-
-
-   ?>
-
+    // foreach ($graphs as $arrKey) {
+    //   foreach ($arrKey as $key => $value) {
+    //     if ($key == "access") {
+    //       if ($value == $level) {
+    //         $dati[] = $arrKey["data"];
+    //       }
+    //     }
+    //   }
+    // };
+     ?>
 
   </head>
   <body>
 
-    <canvas id="myChart"></canvas>
+    <select class="select-level" name="">
+      <option value="guest">options</option>
+      <option value="guest">Guest</option>
+      <option value="employee">employee</option>
+      <option value="clevel">clevel</option>
+    </select>
 
-    <canvas id="myChart2"></canvas>
 
-    <canvas id="myChart3"></canvas>
+    <div class="container">
+      <!-- <canvas id="myChart"></canvas>
+
+      <canvas id="myChart2"></canvas>
+
+      <canvas id="myChart3"></canvas> -->
+    </div>
+
+
 
 
 
