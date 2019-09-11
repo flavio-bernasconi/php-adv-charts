@@ -21,6 +21,35 @@
 
     <title>grafico</title>
 
+    <?php
+
+    include "data.php";
+
+    $level = $_GET["level"];
+    echo "Permesso " . $level . "<br><br><br>";
+
+    $dati = [];
+
+    foreach ($graphs as $arrKey) {
+      foreach ($arrKey as $key => $value) {
+        if ($key == "access") {
+          echo $key . " " . $value;
+          echo "<br><br>";
+          if ($value == $level) {
+            var_dump($arrKey);
+            $dati[] = $arrKey;
+
+          }
+        }
+      }
+    };
+
+
+
+
+   ?>
+
+
   </head>
   <body>
 
@@ -28,8 +57,7 @@
 
     <canvas id="myChart2"></canvas>
 
-      <canvas id="myChart3"></canvas>
-
+    <canvas id="myChart3"></canvas>
 
 
 

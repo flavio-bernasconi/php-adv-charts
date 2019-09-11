@@ -1,5 +1,6 @@
 <?php
 
+
   $graphs = [
     'fatturato' => [
       'type' => 'line',
