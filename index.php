@@ -16,6 +16,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
+    <link rel="stylesheet" href="style.css">
+
     <script type="text/javascript" src="script2.js"></script>
 
     <!-- template movie singoli negli slider -->
@@ -42,19 +44,15 @@
   <body>
 
     <select class="select-level" name="">
-      <option value="guest">options</option>
-      <option value="guest">Guest</option>
+      <option disabled selected>options</option>
+      <option value="guest" >Guest</option>
       <option value="employee">employee</option>
       <option value="clevel">clevel</option>
     </select>
 
 
     <div class="container">
-      <!-- <canvas id="myChart"></canvas>
 
-      <canvas id="myChart2"></canvas>
-
-      <canvas id="myChart3"></canvas> -->
     </div>
 
 
