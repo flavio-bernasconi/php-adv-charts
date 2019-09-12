@@ -39,6 +39,9 @@ function  init(){
                 $(".container").append('<canvas id="myChart"></canvas>');
 
                 grafico0(data);
+
+                $(".num").text("01");
+
               }//fine if
 
 
@@ -53,6 +56,8 @@ function  init(){
                 // grafico0(data);
 
                 grafico1(data);
+
+                $(".num").text("02");
 
               }//fine if
 
@@ -76,6 +81,8 @@ function  init(){
                   grafico0(data);
                   grafico1(data);
                   grafico2(data);
+
+                  $(".num").text("03");
 
 
 

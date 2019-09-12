@@ -32,12 +32,6 @@
   </head>
   <body>
 
-    <!-- <select class="select-level" style="width:130px;">
-      <option disabled selected>options</option>
-      <option value="guest" >Guest</option>
-      <option value="employee">employee</option>
-      <option value="clevel">clevel</option>
-    </select> -->
 
     <aside class="side-bar">
       <div class="content-side-bar">
@@ -48,17 +42,14 @@
           <li><a href="#" data-val="clevel">clevel</a></li>
         </ul>
       </div>
-
-
     </aside>
 
 
     <div class="container">
-
+      <!-- grafici -->
     </div>
 
-
-
+    <h3 class="">0<span class="num">00</span> </h3>
 
 
   </body>
