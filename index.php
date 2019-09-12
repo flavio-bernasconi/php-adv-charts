@@ -28,27 +28,29 @@
 
     <title>grafico</title>
 
-    <?php
-    // foreach ($graphs as $arrKey) {
-    //   foreach ($arrKey as $key => $value) {
-    //     if ($key == "access") {
-    //       if ($value == $level) {
-    //         $dati[] = $arrKey["data"];
-    //       }
-    //     }
-    //   }
-    // };
-     ?>
 
   </head>
   <body>
 
-    <select class="select-level" style="width:130px;">
+    <!-- <select class="select-level" style="width:130px;">
       <option disabled selected>options</option>
       <option value="guest" >Guest</option>
       <option value="employee">employee</option>
       <option value="clevel">clevel</option>
-    </select>
+    </select> -->
+
+    <aside class="side-bar">
+      <div class="content-side-bar">
+        <h3>dashboard</h3>
+        <ul>
+          <li><a href="#" data-val="guest">Guest</a></li>
+          <li><a href="#" data-val="employee">employee</a></li>
+          <li><a href="#" data-val="clevel">clevel</a></li>
+        </ul>
+      </div>
+
+
+    </aside>
 
 
     <div class="container">

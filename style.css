@@ -1,17 +1,75 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700&display=swap');
+
+
 body{
-  background: rgb(17, 17, 33);
+  background: rgb(25,34,48);
+  margin:0;
+  padding:0;
+  font-family: 'Montserrat', sans-serif;
+
 }
 canvas{
   margin-bottom: 100px;
 }
 
 .container{
-  padding-left: 200px;
+  padding-left: 330px;
   max-width: 1300px;
   margin:auto;
+  padding-top: 200px;
+}
+aside{
+  width: 280px;
+  background: rgb(19,28,40);
+  position: fixed;
+  list-style: none;
+  height: 100vh;
+}
+aside h3{
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  margin-top: 50px;
+  padding-left: 30px;
+  color: white;
+}
+aside ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+aside ul li a{
+  text-decoration: none;
+  font-size: 19px;
+  color: white;
+  display: block;
+  padding: 15px 30px;
+  font-weight: lighter;
+}
+aside ul li a:hover{
+  background: rgb(40,191,177, 0.8);
+  color: white
+}
+.active{
+  background: rgb(40,191,177, 1);
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 select{
   position: fixed;
   margin-top: 20px;
@@ -59,4 +117,4 @@ select:focus {
 }
 select option {
     font-weight:normal;
-}
+} */

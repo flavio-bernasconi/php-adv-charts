@@ -11,8 +11,13 @@ function  init(){
   console.log("funziona");
 
 
-  $("select").change(function() {
-      var liv = $(this).children("option:selected").val();
+  $("aside a").click(function() {
+
+    var liv = $(this).attr("data-val");
+
+    $("aside a").removeClass("active");
+    $(this).addClass("active");
+
 
       $.ajax({
         mothos : "GET",
