@@ -16,14 +16,26 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.2.0/handlebars.js" charset="utf-8"></script>
+
     <link rel="stylesheet" href="style.css">
 
     <script type="text/javascript" src="script2.js"></script>
 
     <!-- template movie singoli negli slider -->
-    <script id="template" type="text/x-handlebars-template">
-        <option value="{{livello}}">{{livello}}</option>
-    </script>
+    <!-- <script id="template" type="text/x-handlebars-template">
+      <div class="grafici">
+        <h1>{{titolo}}</h1>
+          <a href="#">{{btn}}</a>
+          <div class="uno">
+            <canvas id="myChart" class="uno"></canvas>
+          </div>
+          <a href="#">{{btn}}</a>
+          <canvas id="myChart2"></canvas>
+          <a href="#">{{btn}}</a>
+          <canvas id="myChart3"></canvas>
+      </div>
+    </script> -->
 
 
     <title>grafico</title>
@@ -33,10 +45,12 @@
   <body>
 
 
+
     <aside class="side-bar">
       <div class="content-side-bar">
-        <h3>Access as:</h3>
         <ul>
+          <li><a href="#" data-val="home" class="active">Home</a></li>
+          <li><h3>Access as:</h3></li>
           <li><a href="#" data-val="guest">Guest</a></li>
           <li><a href="#" data-val="employee">employee</a></li>
           <li><a href="#" data-val="clevel">clevel</a></li>

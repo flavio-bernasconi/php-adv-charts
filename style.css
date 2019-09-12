@@ -14,6 +14,7 @@ canvas{
 
 .container{
   padding-left: 330px;
+  padding-right: 50px;
   max-width: 1300px;
   margin:auto;
   padding-top: 150px;
@@ -25,11 +26,12 @@ aside{
   list-style: none;
   height: 100vh;
   box-shadow: inset -3px 0px 14px black;
+  padding-top: 40px;
 }
 aside h3{
   text-transform: uppercase;
   margin-bottom: 30px;
-  margin-top: 50px;
+  margin-top: 40px;
   padding-left: 30px;
   color: white;
   font-size: 25px;
@@ -101,13 +103,15 @@ aside ul li a:hover::after{
   position: fixed;
   bottom: 30px;
   left: 30px;
-  font-size: 18rem;
+  font-size: 8rem;
   font-weight: bolder;
   color: rgb(16, 24, 34);
   z-index: 2;
   text-shadow: 2px 2px 6px rgba(13, 18, 27, 1);
 }
-
+.num::first-letter{
+  text-transform: uppercase;
+}
 
 
 

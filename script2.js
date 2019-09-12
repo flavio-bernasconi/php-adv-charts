@@ -18,6 +18,11 @@ function  init(){
     $("aside a").removeClass("active dis");
     $(this).addClass("active dis");
 
+    if (liv == "home") {
+      $(".container").empty();
+      $(".num").text("00");
+    }
+
 
 
       $.ajax({
@@ -75,7 +80,6 @@ function  init(){
 
                   $(".container").append(
                     '<canvas id="myChart"></canvas> <canvas id="myChart2"></canvas> <canvas id="myChart3"></canvas>'
-
                   );
 
                   grafico0(data);
@@ -83,6 +87,7 @@ function  init(){
                   grafico2(data);
 
                   $(".num").text("03");
+
 
 
 
@@ -105,6 +110,11 @@ function  init(){
 
 
 }
+
+Chart.Legend.prototype.afterFit = function() {
+    this.height = this.height + 80;
+};
+
 
 
 function grafico0(data){
@@ -176,6 +186,17 @@ function grafico1(data){
               ],
               borderWidth: 0
           }]
+      },
+      options: {
+        legend: {
+            display: true,
+            labels: {
+                boxWidth : 30,
+                fontColor : 'white',
+                position : 'left',
+                padding : 40
+            }
+        }
       }
   });
 }
@@ -214,6 +235,17 @@ function grafico2(data){
               ]
             }
         ]
+      },
+      options: {
+        legend: {
+            display: true,
+            labels: {
+                boxWidth : 30,
+                fontColor : 'white',
+                position : 'left',
+                padding : 40
+            }
+        }
       }
   });
 }
