@@ -11,12 +11,13 @@ function  init(){
   console.log("funziona");
 
 
-  $("aside a").click(function() {
+  $("aside ul li a").click(function() {
 
     var liv = $(this).attr("data-val");
 
-    $("aside a").removeClass("active");
-    $(this).addClass("active");
+    $("aside a").removeClass("active dis");
+    $(this).addClass("active dis");
+
 
 
       $.ajax({
@@ -46,10 +47,10 @@ function  init(){
                 $(".container").empty();
 
                 $(".container").append(
-                  '<canvas id="myChart"></canvas> <canvas id="myChart2"></canvas>'
+                  '<canvas id="myChart2"></canvas>'
                 );
 
-                grafico0(data);
+                // grafico0(data);
 
                 grafico1(data);
 
@@ -100,8 +101,14 @@ function  init(){
 
 
 function grafico0(data){
-  Chart.defaults.global.defaultFontColor = '#FFF';
+
   var ctx = document.getElementById('myChart').getContext('2d');
+
+  var purple_orange_gradient = ctx.createLinearGradient(0, 0, 0, 600);
+  purple_orange_gradient.addColorStop(0, 'rgb(40,191,177, 1)');
+  purple_orange_gradient.addColorStop(1, 'rgb(43,80,237, 0.4)');
+  Chart.defaults.global.defaultFontColor = '#FFF';
+
   var myChart = new Chart(ctx, {
       type: data[0].type,
       data: {
@@ -109,7 +116,7 @@ function grafico0(data){
           datasets: [{
               label: 'fatturato',
               data: data[0].data,
-              backgroundColor: ['rgb(40,191,177, 1)' ]
+              backgroundColor: purple_orange_gradient
           }]
       },
       scaleFontColor: "#FFFFFF",

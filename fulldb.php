@@ -25,7 +25,6 @@
     array_push($dati,$graphs["fatturato"],$graphs["fatturato_by_agent"],$graphs["team_efficiency"],$validPass);
   }
 
-
   echo json_encode($dati);
 
 ?>

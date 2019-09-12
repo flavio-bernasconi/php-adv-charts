@@ -41,7 +41,7 @@
 
     <aside class="side-bar">
       <div class="content-side-bar">
-        <h3>dashboard</h3>
+        <h3>Access as:</h3>
         <ul>
           <li><a href="#" data-val="guest">Guest</a></li>
           <li><a href="#" data-val="employee">employee</a></li>
