@@ -18,13 +18,13 @@ function  init(){
         mothos : "GET",
           url: "fulldb.php",
           data: {
-              level: $(this).children("option:selected").val()
+              level: liv
           },
           success: function(data) {
 
               console.log(data);
 
-              console.log(liv);
+              // console.log(liv);
 
               if (liv =="guest") {
 
@@ -32,18 +32,7 @@ function  init(){
 
                 $(".container").append('<canvas id="myChart"></canvas>');
 
-                var ctx = document.getElementById('myChart').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: data[0].type,
-                    data: {
-                        labels: listMonth(),
-                        datasets: [{
-                            label: '# of Votes',
-                            data: data[0].data,
-                            backgroundColor: ['rgba(255, 99, 132,1)' ]
-                        }]
-                    }
-                });
+                grafico0(data);
               }//fine if
 
 
@@ -55,37 +44,9 @@ function  init(){
                   '<canvas id="myChart"></canvas> <canvas id="myChart2"></canvas>'
                 );
 
-                var ctx = document.getElementById('myChart').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: data[0].type,
-                    data: {
-                        labels: listMonth(),
-                        datasets: [{
-                            label: '# of Votes',
-                            data: data[0].data,
-                            backgroundColor: ['rgba(255, 99, 132,1)' ]
-                        }]
-                    }
-                });
+                grafico0(data);
 
-                var ctx = document.getElementById('myChart2').getContext('2d');
-                var myChart = new Chart(ctx, {
-                    type: data[1].type,
-                    data: {
-                        labels: Object.keys(data[1].data),
-                        datasets: [{
-                            label: '# of Votes',
-                            data: Object.values(data[1].data),
-                            backgroundColor: [
-                              'rgba(255, 99, 132,1)',
-                              'rgba(150, 208, 130, 1)',
-                              'rgba(149, 99, 255, 1)',
-                              'rgba(255, 254, 110, 1)'
-
-                            ]
-                        }]
-                    }
-                });
+                grafico1(data);
 
               }//fine if
 
@@ -106,76 +67,12 @@ function  init(){
 
                   );
 
-                  var ctx = document.getElementById('myChart').getContext('2d');
-                  var myChart = new Chart(ctx, {
-                      type: data[0].type,
-                      data: {
-                          labels: listMonth(),
-                          datasets: [{
-                              label: '# of Votes',
-                              data: data[0].data,
-                              backgroundColor: ['rgba(255, 99, 132,1)' ]
-                          }]
-                      }
-                  });
-
-
-                  var ctx = document.getElementById('myChart2').getContext('2d');
-                  var myChart = new Chart(ctx, {
-                      type: data[1].type,
-                      data: {
-                          labels: Object.keys(data[1].data),
-                          datasets: [{
-                              label: '# of Votes',
-                              data: Object.values(data[1].data),
-                              backgroundColor: [
-                                'rgba(255, 99, 132,1)',
-                                'rgba(150, 208, 130, 1)',
-                                'rgba(149, 99, 255, 1)',
-                                'rgba(255, 254, 110, 1)'
-
-                              ]
-                          }]
-                      }
-                  });
+                  grafico0(data);
+                  grafico1(data);
+                  grafico2(data);
 
 
 
-                  var ctx = document.getElementById('myChart3').getContext('2d');
-                  var myChart = new Chart(ctx, {
-                      type: data[2].type,
-                      data: {
-                          labels: listMonth(),
-                          datasets: [
-                            {
-                              label: 'team1',
-                              data: data[2].data.Team1,
-                              backgroundColor: 'rgb(255, 99, 132,0)',
-                              borderColor: [
-                                'rgba(255, 99, 132,1)'
-                              ]
-                            },
-                            {
-                              label: 'team2',
-                              data: data[2].data.Team2,
-                              backgroundColor: 'rgb(255, 99, 132,0)',
-                              borderColor: [
-                                'rgba(150, 208, 130, 1)',
-
-                              ]
-                            },
-                            {
-                              label: 'team3',
-                              data: data[2].data.Team3,
-                              backgroundColor: 'rgb(255, 99, 132,0)',
-                              borderColor: [
-                                'rgba(46, 79, 255, 1)'
-
-                              ]
-                            }
-                        ]
-                      }
-                  });
                 }
                 else{
                   alert("password errata")
@@ -194,4 +91,110 @@ function  init(){
   });
 
 
+}
+
+
+function grafico0(data){
+  Chart.defaults.global.defaultFontColor = '#FFF';
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: data[0].type,
+      data: {
+          labels: listMonth(),
+          datasets: [{
+              label: 'fatturato',
+              data: data[0].data,
+              backgroundColor: ['rgb(40,191,177, 1)' ]
+          }]
+      },
+      scaleFontColor: "#FFFFFF",
+      options: {
+        responsive: true,
+        scales: {
+          xAxes: [{
+            display: true,
+            gridLines: {
+              display: true,
+              color: "#364156"
+            }
+          }],
+          yAxes: [{
+            display: true,
+            gridLines: {
+              display: true,
+              color: "#364156"
+            }
+          }]
+        }
+      }
+  });
+}
+
+function grafico1(data){
+  var ctx = document.getElementById('myChart2').getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: data[1].type,
+      data: {
+          labels: Object.keys(data[1].data),
+          datasets: [{
+              label: '# of Votes',
+              data: Object.values(data[1].data),
+              backgroundColor: [
+                  'rgba(117, 171, 223, 1)',
+                  'rgb(40,191,177, 1)',
+                  'rgb(43,80,237, 1)',
+                  'rgb(3, 15, 135)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
+              ],
+              borderColor: [
+                'rgb(17, 17, 33)',
+                'rgb(17, 17, 33)',
+                'rgb(17, 17, 33)',
+                'rgb(17, 17, 33)',
+                'rgb(17, 17, 33)',
+                'rgb(17, 17, 33)',
+              ],
+              borderWidth: 0
+          }]
+      }
+  });
+}
+
+function grafico2(data){
+  var ctx = document.getElementById('myChart3').getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: data[2].type,
+      data: {
+          labels: listMonth(),
+          datasets: [
+            {
+              label: 'team1',
+              data: data[2].data.Team1,
+              backgroundColor: 'rgb(255, 99, 132,0)',
+              borderColor: [
+                'rgba(117, 171, 223, 1)',
+              ]
+            },
+            {
+              label: 'team2',
+              data: data[2].data.Team2,
+              backgroundColor: 'rgb(255, 99, 132,0)',
+              borderColor: [
+                'rgb(40,191,177, 1)',
+
+              ]
+            },
+            {
+              label: 'team3',
+              data: data[2].data.Team3,
+              backgroundColor: 'rgb(255, 99, 132,0)',
+              borderColor: [
+                'rgb(43,80,237, 1)',
+
+              ]
+            }
+        ]
+      }
+  });
 }

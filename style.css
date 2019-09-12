@@ -1,10 +1,14 @@
-
+body{
+  background: rgb(17, 17, 33);
+}
 canvas{
   margin-bottom: 100px;
 }
 
 .container{
   padding-left: 200px;
+  max-width: 1300px;
+  margin:auto;
 }
 
 

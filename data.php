@@ -8,7 +8,7 @@
       'access' => 'guest'
     ],
     'fatturato_by_agent' => [
-      'type' => 'pie',
+      'type' => 'doughnut',
       'data' => ['Marco' => 9000,'Giuseppe' => 4000,'Mattia' => 3200,'Alberto' => 2300],
       'access' => 'employee'
     ],
