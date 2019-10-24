@@ -1,251 +1,176 @@
-$(document).ready(init);
+function getMonths() {
 
-
-function listMonth(){
-  var months = moment.months();
-  return months;
+  return moment.months();
 }
 
-
-function  init(){
-  console.log("funziona");
-
+function drawGraphs() {
 
   $("aside ul li a").click(function() {
 
-    var liv = $(this).attr("data-val");
+  var liv = $(this).attr("data-val");
 
-    $("aside a").removeClass("active dis");
-    $(this).addClass("active dis");
+  $("aside a").removeClass("active dis");
+  $(this).addClass("active dis");
 
-    if (liv == "home") {
-      $(".container").empty();
-      $(".num").text("00");
+  $('.container canvas').each(function(idx, item) {
+        var context = item.getContext("2d");
+        context.clearRect(0, 0, item.width, item.height);
+        context.beginPath();
+    });
+
+  $.ajax({
+
+      url: "fulldb.php",
+      method: "GET",
+      data: {"level": liv},
+
+      success: function(data) {
+
+        console.log(liv);
+        console.log(data);
+
+        for(var i=0;i<data.length;i++) {
+
+          var d = data[i];
+          var type = d.type;
+
+          if (type == 'line') {
+            drawLineGraph(d, i);
+          } else {
+            drawPieGraph(d, i);
+          }
+        }
+      },
+      erorr: function() { }
+    });
+  });
+
+}
+
+
+function drawLineGraph(data, index) {
+
+  var months = getMonths();
+  var ctx = $('#graph' + index);
+
+  if (Array.isArray(data.data)) {
+    console.log("array classico",data.data);
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: months,
+        datasets: [{
+          label: "Value",
+          data: data.data,
+          backgroundColor :'rgba(117, 171, 223, 1)'
+        }]
+      }
+    });
+  } else {
+    console.log("array associativo",data.data);
+    var teamNames = Object.keys(data.data);
+    var teamScores = Object.values(data.data);
+
+    var datasets = [];
+    for(var i=0;i<teamNames.length;i++) {
+
+      var teamName = teamNames[i];
+      var teamScore = teamScores[i];
+
+      datasets.push({
+        label: teamName,
+        data: teamScore,
+        backgroundColor : 'rgba(117, 171, 223, 0)',
+        borderColor: randomColor()
+      });
     }
 
-
-
-      $.ajax({
-        mothos : "GET",
-          url: "fulldb.php",
-          data: {
-              level: liv
-          },
-          success: function(data) {
-
-              console.log(data);
-
-              // console.log(liv);
-
-              if (liv =="guest") {
-
-                $(".container").empty();
-
-                $(".container").append('<canvas id="myChart"></canvas>');
-
-                grafico0(data);
-
-                $(".num").text("01");
-
-              }//fine if
-
-
-              if (liv =="employee") {
-
-                $(".container").empty();
-
-                $(".container").append(
-                  '<canvas id="myChart2"></canvas>'
-                );
-
-                // grafico0(data);
-
-                grafico1(data);
-
-                $(".num").text("02");
-
-              }//fine if
-
-
-
-              if (liv =="clevel") {
-
-                var pass = prompt("What is your password?");
-                console.log(pass);
-
-                var validPass = data[3];
-
-                if (validPass.includes(pass)) {
-                  $(".container").empty();
-
-                  $(".container").append(
-                    '<canvas id="myChart"></canvas> <canvas id="myChart2"></canvas> <canvas id="myChart3"></canvas>'
-                  );
-
-                  grafico0(data);
-                  grafico1(data);
-                  grafico2(data);
-
-                  $(".num").text("03");
-
-
-
-
-                }
-                else{
-                  alert("password errata")
-                }
-
-
-
-
-              }
-
-          },
-          error: function(result) {
-              alert('error');
-          }
-      });
-  });
-
-
-}
-
-Chart.Legend.prototype.afterFit = function() {
-    this.height = this.height + 80;
-};
-
-
-
-function grafico0(data){
-
-  var ctx = document.getElementById('myChart').getContext('2d');
-
-  var purple_orange_gradient = ctx.createLinearGradient(0, 0, 0, 600);
-  purple_orange_gradient.addColorStop(0, 'rgb(40,191,177, 1)');
-  purple_orange_gradient.addColorStop(1, 'rgb(43,80,237, 0.4)');
-  Chart.defaults.global.defaultFontColor = '#FFF';
-
-  var myChart = new Chart(ctx, {
-      type: data[0].type,
+    new Chart(ctx, {
+      type: 'line',
       data: {
-          labels: listMonth(),
-          datasets: [{
-              label: 'fatturato',
-              data: data[0].data,
-              backgroundColor: purple_orange_gradient
-          }]
-      },
-      scaleFontColor: "#FFFFFF",
-      options: {
-        responsive: true,
-        scales: {
-          xAxes: [{
-            display: true,
-            gridLines: {
-              display: true,
-              color: "#364156"
-            }
-          }],
-          yAxes: [{
-            display: true,
-            gridLines: {
-              display: true,
-              color: "#364156"
-            }
-          }]
-        }
+        labels: months,
+        datasets: datasets,
+        backgroundColor : 'rgba(117, 171, 223, 0)',
+        borderColor: randomColor(),
       }
-  });
+    });
+  }
 }
 
-function grafico1(data){
-  var ctx = document.getElementById('myChart2').getContext('2d');
-  var myChart = new Chart(ctx, {
-      type: data[1].type,
+
+function drawPieGraph(data, index) {
+
+  console.log(data);
+
+  var names = Object.keys(data.data);
+  var values = Object.values(data.data);
+
+  var ctx = $('#graph' + index);
+  new Chart(ctx, {
+      type: data.type,
       data: {
-          labels: Object.keys(data[1].data),
+          labels: names,
           datasets: [{
-              label: '# of Votes',
-              data: Object.values(data[1].data),
+              label: "Values",
+              data: values,
               backgroundColor: [
-                  'rgba(117, 171, 223, 1)',
-                  'rgb(40,191,177, 1)',
-                  'rgb(43,80,237, 1)',
-                  'rgb(3, 15, 135)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
+                  randomColor(),
+                  randomColor(),
+                  randomColor(),
+                  randomColor(),
+                  randomColor(),
+                  randomColor(),
+                  randomColor(),
+                  randomColor(),
+                  randomColor(),
+                  randomColor(),
+                  randomColor(),
+                  randomColor(),
+                  randomColor(),
+                  randomColor(),
+                  randomColor(),
+                  randomColor(),
+                  randomColor(),
+                  randomColor(),
               ],
               borderColor: [
-                'rgb(17, 17, 33)',
-                'rgb(17, 17, 33)',
-                'rgb(17, 17, 33)',
-                'rgb(17, 17, 33)',
-                'rgb(17, 17, 33)',
-                'rgb(17, 17, 33)',
+                  'rgba(255, 99, 132, 0)',
+                  'rgba(54, 162, 235, 0)',
+                  'rgba(255, 206, 86, 0)',
+                  'rgba(75, 192, 192, 0)',
+                  'rgba(153, 102, 255, 0)',
+                  'rgba(255, 159, 64, 0)'
               ],
-              borderWidth: 0
+              borderWidth: 1
           }]
-      },
-      options: {
-        legend: {
-            display: true,
-            labels: {
-                boxWidth : 30,
-                fontColor : 'white',
-                position : 'left',
-                padding : 40
-            }
-        }
       }
   });
 }
 
-function grafico2(data){
-  var ctx = document.getElementById('myChart3').getContext('2d');
-  var myChart = new Chart(ctx, {
-      type: data[2].type,
-      data: {
-          labels: listMonth(),
-          datasets: [
-            {
-              label: 'team1',
-              data: data[2].data.Team1,
-              backgroundColor: 'rgb(255, 99, 132,0)',
-              borderColor: [
-                'rgba(117, 171, 223, 1)',
-              ]
-            },
-            {
-              label: 'team2',
-              data: data[2].data.Team2,
-              backgroundColor: 'rgb(255, 99, 132,0)',
-              borderColor: [
-                'rgb(40,191,177, 1)',
-
-              ]
-            },
-            {
-              label: 'team3',
-              data: data[2].data.Team3,
-              backgroundColor: 'rgb(255, 99, 132,0)',
-              borderColor: [
-                'rgb(43,80,237, 1)',
-
-              ]
-            }
-        ]
-      },
-      options: {
-        legend: {
-            display: true,
-            labels: {
-                boxWidth : 30,
-                fontColor : 'white',
-                position : 'left',
-                padding : 40
-            }
-        }
-      }
-  });
+function repeatColor(data){
+  for (var i = 0; i < data.length; i++) {
+    randomColor();
+  }
 }
+
+
+function randomColor(){
+  var arrNum = [];
+  for (var i = 0; i < 3; i++) {
+     var numRandom =  Math.floor((Math.random() * 178) + 77);
+     if (!arrNum.includes(numRandom)) {
+       arrNum.push(numRandom)
+     }
+  }
+  var numeri = 20 + "," + arrNum[1] + "," + arrNum[2]+ ",";
+  var rgb = "rgb(" + numeri + "1)";
+
+  return rgb
+}
+
+function init() {
+  randomColor()
+  drawGraphs();
+}
+
+$(document).ready(init);

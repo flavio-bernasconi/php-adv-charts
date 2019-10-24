@@ -22,20 +22,7 @@
 
     <script type="text/javascript" src="script2.js"></script>
 
-    <!-- template movie singoli negli slider -->
-    <!-- <script id="template" type="text/x-handlebars-template">
-      <div class="grafici">
-        <h1>{{titolo}}</h1>
-          <a href="#">{{btn}}</a>
-          <div class="uno">
-            <canvas id="myChart" class="uno"></canvas>
-          </div>
-          <a href="#">{{btn}}</a>
-          <canvas id="myChart2"></canvas>
-          <a href="#">{{btn}}</a>
-          <canvas id="myChart3"></canvas>
-      </div>
-    </script> -->
+
 
 
     <title>grafico</title>
@@ -60,7 +47,10 @@
 
 
     <div class="container">
-      <!-- grafici -->
+      <canvas id="graph0"></canvas>
+      <canvas id="graph1"></canvas>
+      <canvas id="graph2"></canvas>
+      <canvas id="graph3"></canvas>
     </div>
 
     <h3 class="">0<span class="num">00</span> </h3>
